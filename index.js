@@ -6,16 +6,24 @@
 
 const Storage = require('json-storage')
 
+const getDateTime = () => {
+  let date = new Date()
+  let day = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate())
+
+  return day.getTime()
+}
+
 class StorageDate extends Storage {
   constructor(root) {
     super(root)
   }
 
   set(data) {
-    let date = new Date()
-    let day = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate())
+    return super.set(getDateTime(), data)
+  }
 
-    super.set(day.getTime(), data)
+  get(key = getDateTime()) {
+    return super.get(key)
   }
 }
 
