@@ -18,8 +18,13 @@ class StorageDate extends Storage {
     super(root)
   }
 
-  set(data) {
-    return super.set(getDateTime(), data)
+  set(key, data) {
+    if (typeof key !== 'string') {
+      data = key
+      key = getDateTime()
+    }
+    
+    return super.set(key, data)
   }
 
   get(key = getDateTime()) {
