@@ -46,9 +46,21 @@ class StorageDate extends Storage {
     let weekTime = week.getTime()
 
     return super.findKeys(function(key) {
-      let date = parseFloat(key)
+      let key = parseFloat(key)
 
-      return date >= dayTime && date <= weekTime
+      return key >= dayTime && key <= weekTime
+    })
+  }
+
+  getMonthKeys() {
+    let date = new Date()
+    let monthTime = new Date(date.getFullYear(), date.getMonth() + 1, 1).getTime()
+    let nextMonthTime = new Date(date.getFullYear(), date.getMonth() + 2, 1).getTime()
+
+    return super.findKeys(function(key) {
+      let key = parseFloat(key)
+
+      return key >= monthTime && key <= nextMonthTime
     })
   }
 }
