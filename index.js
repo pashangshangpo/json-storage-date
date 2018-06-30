@@ -63,6 +63,18 @@ class StorageDate extends Storage {
       return key >= monthTime && key <= nextMonthTime
     })
   }
+
+  getFullYearKeys() {
+    let date = new Date()
+    let fullYearTime = new Date(date.getFullYear(), 1, 1).getTime()
+    let nextFullYearTime = new Date(date.getFullYear() + 1, 1, 1).getTime()
+
+    return super.findKeys(function(key) {
+      let key = parseFloat(key)
+
+      return key >= fullYearTime && key <= nextFullYearTime
+    })
+  }
 }
 
 module.exports = StorageDate
