@@ -25,6 +25,10 @@ class StorageDate extends Storage {
   get(key = getDateTime()) {
     return super.get(key)
   }
+
+  remove(key = getDateTime()) {
+    return super.remove(key)
+  }
 }
 
 module.exports = StorageDate
